@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1a1a1a;
+    font-family: 'Arial', sans-serif;
+}
+
+.profile-frame {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    background: #2a2a2a;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.profile-frame::before {
+    content: '';
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background: conic-gradient(
+        #ff0052,
+        #ff3d00,
+        #ff8d00,
+        #00ff66,
+        #00ffff,
+        #ff0052
+    );
+    animation: spin 4s linear infinite;
+}
+
+.profile-frame::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    background: #2a2a2a;
+    border-radius: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.profile-content {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    border-radius: 15px;
+    z-index: 10;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.profile-frame:hover .profile-content img {
+    transform: scale(1.1);
+}
+
+.glitch-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 255, 255, 0.1);
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    animation: glitch 2s infinite;
+}
+
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-5px, 5px);
+    }
+    40% {
+        transform: translate(5px, -5px);
+    }
+    60% {
+        transform: translate(-5px, -5px);
+    }
+    80% {
+        transform: translate(5px, 5px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+.scan-line {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: rgba(0, 255, 255, 0.2);
+    animation: scan 2s linear infinite;
+    z-index: 11;
+}
+
+@keyframes scan {
+    0% {
+        top: -10%;
+    }
+    100% {
+        top: 110%;
+    }
+}
+
+@media (max-width: 350px) {
+    .profile-frame {
+        width: 250px;
+        height: 250px;
+    }
+    .profile-content {
+        width: 200px;
+        height: 200px;
+    }
+}
